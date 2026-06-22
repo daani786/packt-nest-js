@@ -1,0 +1,34 @@
+services:
+  packt_nest_js:
+    container_name: packt_nest_js
+    restart: always
+    build:
+      context: .
+      additional_contexts:
+        app_folder: ./../code
+      dockerfile: ./Dockerfile
+    volumes:
+      # Mount the local directory to the container's working directory 
+      # for live code updates during development
+      - ./../code:/packt_nest_js
+      # Create a named volume for node_modules to avoid host machine dependencies
+      # - /usr/src/app/node_modules
+      - packt_nest_js_node_modules:/packt_nest_js/node_modules
+    environment:
+      NODE_ENV: development
+      # MONGODB_URL: mongodb://root:1234@mongo-db:27017/short_url
+      # Nginx-proxy reads this to route traffic
+      VIRTUAL_HOST: packt_nest_js.local
+      VIRTUAL_PORT: 8000
+    # ports:
+    #   - 8000:8000
+    stdin_open: true
+    networks:
+      web_proxy:
+
+volumes:
+  packt_nest_js_node_modules:
+
+networks:
+  web_proxy:
+    external: true
