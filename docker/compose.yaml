@@ -19,7 +19,7 @@ services:
       # MONGODB_URL: mongodb://root:1234@mongo-db:27017/short_url
       # Nginx-proxy reads this to route traffic
       VIRTUAL_HOST: packt_nest_js.local
-      VIRTUAL_PORT: 8000
+      VIRTUAL_PORT: 3000
     # ports:
     #   - 8000:8000
     stdin_open: true

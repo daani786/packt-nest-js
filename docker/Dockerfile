@@ -4,6 +4,8 @@ FROM node:20-alpine
 # Set the working directory to /app
 WORKDIR /packt_nest_js
 
+RUN npm i -g @nestjs/cli
+
 # Copy package.json and package-lock.json (if available) to the working directory
 COPY --from=app_folder ./package*.json .
 
@@ -14,10 +16,10 @@ RUN npm install
 COPY --from=app_folder . .
 
 # Expose the port the app runs on (e.g., 3000, 8080)
-EXPOSE 8000
+EXPOSE 3000
 
 # Define the command to run the application
-CMD ["npm", "start"]
+CMD ["npm", "run", "start:dev"]
 
 
 # ENTRYPOINT ["tail"]
