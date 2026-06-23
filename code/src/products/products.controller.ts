@@ -1,10 +1,11 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Header } from '@nestjs/common';
 
 @Controller('products')
 export class ProductsController {
   @Get()
-  getProducts(): string {
-    return 'Products Controller';
+  @Header('Content-Type', 'test/html')
+  getProducts(): any {
+    return {'message': 'Products Controller'};
   }
 
 }
