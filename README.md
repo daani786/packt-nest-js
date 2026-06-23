@@ -17,3 +17,9 @@ that is only for making docker work and its checking
 
 install nest project in current folder which is code folder on host machine
 /packt_nest_js # nest new .
+
+
+------------------------
+
+Add new controller
+/packt_nest_js # nest g controller products --no-spec
