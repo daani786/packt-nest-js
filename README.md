@@ -23,3 +23,6 @@ install nest project in current folder which is code folder on host machine
 
 Add new controller
 /packt_nest_js # nest g controller products --no-spec
+
+Add new provider / service
+/packt_nest_js # nest g service products --no-spec
