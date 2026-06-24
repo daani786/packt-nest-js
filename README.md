@@ -26,3 +26,6 @@ Add new controller
 
 Add new provider / service
 /packt_nest_js # nest g service products --no-spec
+
+Add new module
+/packt_nest_js # nest g module products --no-spec
