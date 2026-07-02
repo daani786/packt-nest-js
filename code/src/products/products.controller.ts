@@ -1,5 +1,6 @@
-import { Controller, Get, Post, Header, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Put, Patch, Header, Body, Param } from '@nestjs/common';
 import { ProductsService } from './products.service';
+import { Product } from './products.model';
 
 @Controller('products')
 export class ProductsController {
@@ -24,6 +25,7 @@ export class ProductsController {
   }
 
   @Post()
+  @Header('Content-Type', 'application/json')
   addProducts(
     @Body('title') pTitle: string, 
     @Body('description') pDesc: string, 
@@ -37,5 +39,24 @@ export class ProductsController {
     };
   }
 
+  @Put(':id')
+  @Header('Content-Type', 'application/json')
+  updateProduct(@Param('id') id: string, @Body() productData: Product) {
+    const updatedProduct = this.productService.updateProduct(id, productData);
+    return {
+      status: 1,
+      data: updatedProduct
+    };
+  }
+
+  @Patch(':id')
+  @Header('Content-Type', 'application/json')
+  partialUpdate(@Param('id') id: string, @Body() productData: Product) {
+    const updatedProduct = this.productService.partialUpdate(id, productData);
+    return {
+      status: 1,
+      data: updatedProduct
+    };
+  }
 
 }
