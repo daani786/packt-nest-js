@@ -66,4 +66,9 @@ export class ProductsService {
     }
     return [this.product[productIndex], productIndex];
   }
+
+  deleteProduct(id: string) {
+    const [product, index] = this.findProduct(id);
+    return this.product.splice(index, 1);
+  }
 }

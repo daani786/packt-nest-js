@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Patch, Header, Body, Param } from '@nestjs/common';
+import { Controller, Get, Post, Put, Patch, Delete, Header, Body, Param } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { Product } from './products.model';
 
@@ -59,4 +59,13 @@ export class ProductsController {
     };
   }
 
+  @Delete(':id')
+  @Header('Content-Type', 'application/json')
+  deleteProduct(@Param('id') id: string) {
+    this.productService.deleteProduct(id);
+    return {
+      status: 1,
+      message: 'Product deleted successfully'
+    };
+  }
 }
