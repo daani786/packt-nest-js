@@ -1,6 +1,6 @@
-import { Controller, Get, Req } from '@nestjs/common';
+import { Controller, Get, Req, Res } from '@nestjs/common';
 import { AppService } from './app.service';
-import type { Request } from 'express';
+import type { Request, Response } from 'express';
 
 @Controller()
 export class AppController {
@@ -12,14 +12,32 @@ export class AppController {
   }
 
   @Get('fetch-req{/:id}')
-  fetchReq(@Req() req: Request) {
+  fetchReq(@Req() req: Request, @Res() res: Response) {
     const {id} = req.params;
     const queryParams = req.query;
     const userAgent = req.headers['user-agent'];
-    return {
-      id,
-      queryParams,
-      userAgent,
-    };
+    // return {
+    //   id,
+    //   queryParams,
+    //   userAgent,
+    // };
+    return res.status(500).send(`
+      <script>
+        console.log("Id: ", "${id}");
+        console.log("Query Params: ", ${JSON.stringify(queryParams)});
+        console.log("User Agent: ", "${userAgent}");
+      </script>
+    `)
+    // Headers
+    // res.set('Content-Type', 'application/json');
+    // Cookies
+    // res.cookie('user', 'adnan');
+    // Redirection
+    // res.redirect('/new-url');
+    // Sending Files
+    // res.sendFile('path/to/file.pdf');
+    // Streaming Data
+    // res.write('Streaming data...');
+
   }
 }
