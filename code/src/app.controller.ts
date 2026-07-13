@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Res } from '@nestjs/common';
+import { Controller, Get, Req, Res, Query, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 import type { Request, Response } from 'express';
 
@@ -39,5 +39,14 @@ export class AppController {
     // Streaming Data
     // res.write('Streaming data...');
 
+  }
+
+  @Get('fetch-query{/:id}')
+  fetchQuery(@Param('id') id: string, @Query('name') name: string, @Query('age') age: number) {
+    return {
+      Id: `${id}`,
+      Name: `${name}`,
+      Age: `${age}`
+    };
   }
 }
