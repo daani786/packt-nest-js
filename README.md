@@ -29,3 +29,12 @@ Add new provider / service
 
 Add new module
 /packt_nest_js # nest g module products --no-spec
+
+
+-------------------------
+Http status code
+200 = OK
+201 = Created
+302 = Found
+404 = No Found
+502 = Bad Gateway

@@ -1,4 +1,4 @@
-import { Controller, Get, Req, Res, Query, Param, HttpCode } from '@nestjs/common';
+import { Controller, Get, Req, Res, Query, Param, HttpCode, HttpStatus } from '@nestjs/common';
 import { AppService } from './app.service';
 import type { Request, Response } from 'express';
 
@@ -7,7 +7,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  @HttpCode(200)
+  @HttpCode(HttpStatus.OK)
   getHello(): string {
     return this.appService.getHello();
   }
@@ -49,5 +49,14 @@ export class AppController {
       Name: `${name}`,
       Age: `${age}`
     };
+  }
+
+  @Get('resp-status')
+  @HttpCode(HttpStatus.BAD_GATEWAY)
+  getRespStatus() {
+    return {
+      message: "resp-status",
+      status: HttpStatus.OK
+    }
   }
 }
